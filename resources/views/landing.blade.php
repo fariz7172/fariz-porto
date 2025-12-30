@@ -309,11 +309,11 @@
                     >
                         <!-- Project Image/Placeholder -->
                         @if($project->image)
-                            <div class="aspect-video overflow-hidden bg-gray-100">
+                            <div class="overflow-hidden bg-gray-100" style="height: 200px;">
                                 <img src="{{ asset('uploads/' . $project->image) }}" alt="{{ $project->title }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                             </div>
                         @else
-                            <div class="aspect-video bg-gradient-to-br {{ $project->color }} flex items-center justify-center">
+                            <div class="bg-gradient-to-br {{ $project->color }} flex items-center justify-center" style="height: 200px;">
                                 <svg class="w-16 h-16 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                 </svg>
@@ -517,7 +517,7 @@
                 </button>
                 
                 <!-- Modal header with gradient/image -->
-                <div id="modalHeader" class="aspect-video -mx-6 -mt-6 mb-6 bg-gray-100 flex items-center justify-center rounded-t-2xl overflow-hidden">
+                <div id="modalHeader" class="-mx-6 -mt-6 mb-6 bg-gray-100 flex items-center justify-center rounded-t-2xl overflow-hidden" style="height: 250px;">
                     <img id="modalImage" src="" alt="" class="hidden w-full h-full object-cover">
                     <svg id="modalIcon" class="w-16 h-16 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
@@ -632,11 +632,13 @@
                 modalImage.alt = project.title;
                 modalImage.classList.remove('hidden');
                 modalIcon.classList.add('hidden');
-                modalHeader.className = 'aspect-video -mx-6 -mt-6 mb-6 bg-gray-100 flex items-center justify-center rounded-t-2xl overflow-hidden';
+                modalHeader.className = '-mx-6 -mt-6 mb-6 bg-gray-100 flex items-center justify-center rounded-t-2xl overflow-hidden';
+                modalHeader.style.height = '250px';
             } else {
                 modalImage.classList.add('hidden');
                 modalIcon.classList.remove('hidden');
-                modalHeader.className = `aspect-video -mx-6 -mt-6 mb-6 bg-gradient-to-br ${project.color} flex items-center justify-center rounded-t-2xl overflow-hidden`;
+                modalHeader.className = `-mx-6 -mt-6 mb-6 bg-gradient-to-br ${project.color} flex items-center justify-center rounded-t-2xl overflow-hidden`;
+                modalHeader.style.height = '250px';
             }
             
             // Update features
