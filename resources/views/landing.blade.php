@@ -309,8 +309,8 @@
                     >
                         <!-- Project Image/Placeholder -->
                         @if($project->image)
-                            <div class="h-48 overflow-hidden">
-                                <img src="{{ asset('uploads/' . $project->image) }}" alt="{{ $project->title }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                            <div class="h-56 overflow-hidden bg-gray-50 flex items-center justify-center">
+                                <img src="{{ asset('uploads/' . $project->image) }}" alt="{{ $project->title }}" class="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-300">
                             </div>
                         @else
                             <div class="h-48 bg-gradient-to-br {{ $project->color }} flex items-center justify-center">
@@ -517,8 +517,8 @@
                 </button>
                 
                 <!-- Modal header with gradient/image -->
-                <div id="modalHeader" class="h-48 -mx-6 -mt-6 mb-6 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center rounded-t-2xl overflow-hidden">
-                    <img id="modalImage" src="" alt="" class="hidden w-full h-full object-cover">
+                <div id="modalHeader" class="min-h-48 max-h-80 -mx-6 -mt-6 mb-6 bg-gray-100 flex items-center justify-center rounded-t-2xl overflow-hidden">
+                    <img id="modalImage" src="" alt="" class="hidden max-w-full max-h-80 object-contain">
                     <svg id="modalIcon" class="w-16 h-16 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
                     </svg>
@@ -632,11 +632,11 @@
                 modalImage.alt = project.title;
                 modalImage.classList.remove('hidden');
                 modalIcon.classList.add('hidden');
-                modalHeader.className = 'h-48 -mx-6 -mt-6 mb-6 rounded-t-2xl overflow-hidden';
+                modalHeader.className = 'min-h-48 max-h-80 -mx-6 -mt-6 mb-6 bg-gray-100 flex items-center justify-center rounded-t-2xl overflow-hidden';
             } else {
                 modalImage.classList.add('hidden');
                 modalIcon.classList.remove('hidden');
-                modalHeader.className = `h-48 -mx-6 -mt-6 mb-6 bg-gradient-to-br ${project.color} flex items-center justify-center rounded-t-2xl overflow-hidden`;
+                modalHeader.className = `min-h-48 -mx-6 -mt-6 mb-6 bg-gradient-to-br ${project.color} flex items-center justify-center rounded-t-2xl overflow-hidden`;
             }
             
             // Update features
