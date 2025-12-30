@@ -131,7 +131,7 @@
                     <div class="relative w-96 h-[32rem] bg-white/30 backdrop-blur-md border border-white/50 rounded-[2rem] shadow-2xl overflow-hidden p-4 transform transition-transform hover:scale-[1.02] duration-500">
                         <div class="w-full h-full rounded-3xl overflow-hidden relative group">
                             @if(isset($about) && $about->hero_image)
-                                <img src="{{ asset('storage/' . $about->hero_image) }}" alt="Hero Image" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                <img src="{{ asset('uploads/' . $about->hero_image) }}" alt="Hero Image" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             @else
                                 <div class="w-full h-full bg-gradient-to-br from-accent-500 to-purple-600 flex items-center justify-center">
@@ -310,7 +310,7 @@
                         <!-- Project Image/Placeholder -->
                         @if($project->image)
                             <div class="h-48 overflow-hidden">
-                                <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                                <img src="{{ asset('uploads/' . $project->image) }}" alt="{{ $project->title }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                             </div>
                         @else
                             <div class="h-48 bg-gradient-to-br {{ $project->color }} flex items-center justify-center">
@@ -610,7 +610,7 @@
                 'features' => $p->features,
                 'color' => $p->color,
                 'year' => $p->year,
-                'image' => $p->image ? asset('storage/' . $p->image) : null,
+                'image' => $p->image ? asset('uploads/' . $p->image) : null,
             ];
         })->values()->toJson() !!};
         

@@ -70,7 +70,7 @@
                                 <div class="flex items-center gap-4">
                                     @if($project->image)
                                         <div id="current-image" class="w-32 h-20 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0 relative group">
-                                            <img src="{{ asset('storage/' . $project->image) }}" alt="Current" class="w-full h-full object-cover">
+                                            <img src="{{ asset('uploads/' . $project->image) }}" alt="Current" class="w-full h-full object-cover">
                                             <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                                                 <span class="text-white text-xs">Gambar saat ini</span>
                                             </div>

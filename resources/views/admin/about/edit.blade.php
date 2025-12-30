@@ -68,7 +68,7 @@
                                 <div class="flex items-center gap-4">
                                     @if($about->hero_image)
                                         <div class="w-20 h-20 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
-                                            <img src="{{ asset('storage/' . $about->hero_image) }}" alt="Current" class="w-full h-full object-cover">
+                                            <img src="{{ asset('uploads/' . $about->hero_image) }}" alt="Current" class="w-full h-full object-cover">
                                         </div>
                                     @endif
                                     <div class="flex-1">
