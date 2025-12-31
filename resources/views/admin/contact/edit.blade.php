@@ -99,6 +99,56 @@
                                 @enderror
                             </div>
 
+                            <div class="border-t pt-6 mt-2">
+                                <h3 class="text-lg font-medium text-gray-900 mb-4">Social Media Links</h3>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <!-- Instagram -->
+                                    <div>
+                                        <label for="instagram" class="block text-sm font-medium text-gray-700 mb-2">Instagram URL</label>
+                                        <input type="text" name="social_links[instagram]" id="instagram" 
+                                            value="{{ old('social_links.instagram', $contact->social_links['instagram'] ?? '') }}"
+                                            class="w-full rounded-lg border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                                            placeholder="https://instagram.com/username">
+                                    </div>
+
+                                    <!-- LinkedIn -->
+                                    <div>
+                                        <label for="linkedin" class="block text-sm font-medium text-gray-700 mb-2">LinkedIn URL</label>
+                                        <input type="text" name="social_links[linkedin]" id="linkedin" 
+                                            value="{{ old('social_links.linkedin', $contact->social_links['linkedin'] ?? '') }}"
+                                            class="w-full rounded-lg border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                                            placeholder="https://linkedin.com/in/username">
+                                    </div>
+
+                                    <!-- GitHub -->
+                                    <div>
+                                        <label for="github" class="block text-sm font-medium text-gray-700 mb-2">GitHub URL</label>
+                                        <input type="text" name="social_links[github]" id="github" 
+                                            value="{{ old('social_links.github', $contact->social_links['github'] ?? '') }}"
+                                            class="w-full rounded-lg border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                                            placeholder="https://github.com/username">
+                                    </div>
+
+                                    <!-- Facebook -->
+                                    <div>
+                                        <label for="facebook" class="block text-sm font-medium text-gray-700 mb-2">Facebook URL</label>
+                                        <input type="text" name="social_links[facebook]" id="facebook" 
+                                            value="{{ old('social_links.facebook', $contact->social_links['facebook'] ?? '') }}"
+                                            class="w-full rounded-lg border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                                            placeholder="https://facebook.com/username">
+                                    </div>
+                                    
+                                     <!-- TikTok -->
+                                     <div>
+                                        <label for="tiktok" class="block text-sm font-medium text-gray-700 mb-2">TikTok URL</label>
+                                        <input type="text" name="social_links[tiktok]" id="tiktok" 
+                                            value="{{ old('social_links.tiktok', $contact->social_links['tiktok'] ?? '') }}"
+                                            class="w-full rounded-lg border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                                            placeholder="https://tiktok.com/@username">
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Submit Button -->
                             <div class="flex justify-end pt-4">
                                 <button type="submit" class="px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors font-medium">

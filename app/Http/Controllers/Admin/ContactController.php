@@ -34,6 +34,7 @@ class ContactController extends Controller
             'address' => 'nullable|string',
             'map_embed_url' => 'nullable|string',
             'map_link' => 'nullable|string|max:500',
+            'social_links' => 'nullable|array',
         ]);
 
         $contact = Contact::first();

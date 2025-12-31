@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -6,22 +6,24 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <h1 class="font-bold text-xl font-montserrat tracking-tight text-secondary-900">
+                            Ahmad<span class="text-accent-500">Farid</span>
+                        </h1>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')" class="hover:text-accent-500 text-gray-500 font-medium transition-colors">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.about.edit')" :active="request()->routeIs('admin.about.*')">
+                    <x-nav-link :href="route('admin.about.edit')" :active="request()->routeIs('admin.about.*')" class="hover:text-accent-500 text-gray-500 font-medium transition-colors">
                         {{ __('About') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.projects.index')" :active="request()->routeIs('admin.projects.*')">
+                    <x-nav-link :href="route('admin.projects.index')" :active="request()->routeIs('admin.projects.*')" class="hover:text-accent-500 text-gray-500 font-medium transition-colors">
                         {{ __('Projects') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.contact.edit')" :active="request()->routeIs('admin.contact.*')">
+                    <x-nav-link :href="route('admin.contact.edit')" :active="request()->routeIs('admin.contact.*')" class="hover:text-accent-500 text-gray-500 font-medium transition-colors">
                         {{ __('Contact') }}
                     </x-nav-link>
                 </div>

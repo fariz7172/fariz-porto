@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Landing page
-Route::get('/', [LandingController::class, 'index']);
+Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 // Dashboard - redirect to admin
 Route::get('/dashboard', function () {

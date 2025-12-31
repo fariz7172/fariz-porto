@@ -71,6 +71,7 @@
             </div>
             
             <!-- Mobile Menu -->
+            {{-- 
             <div id="mobile-menu" class="hidden md:hidden pb-4">
                 <div class="flex flex-col space-y-3">
                     <a href="#home" class="text-secondary-700 hover:text-accent-500 transition-colors font-medium py-2">Home</a>
@@ -89,14 +90,17 @@
                         @endauth
                     @endif
                 </div>
-            </div>
+            </div> 
+            --}}
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen relative overflow-hidden flex items-center pt-16 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('images/hero-bg.png') }}');">
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-white/90"></div>
+    <section id="home" class="min-h-screen relative overflow-hidden flex items-center pt-16 bg-gradient-to-br from-orange-100 via-white to-blue-200">
+        <!-- Decorative blobs -->
+        <div class="absolute top-0 left-0 w-96 h-96 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-20 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-4000"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -157,20 +161,29 @@
                         </div>
                     </div>
 
-                    <!-- Floating Badge -->
-                    <div class="absolute -right-4 bottom-10 bg-white/90 backdrop-blur shadow-xl p-4 rounded-2xl animate-float animation-delay-2000">
+                    <!-- Floating Badge (CV Download) -->
+                    <a href="{{ asset('CV_Ahmad_Farid.pdf') }}" download class="absolute -right-4 bottom-10 bg-white/90 backdrop-blur shadow-xl p-4 rounded-2xl animate-float animation-delay-2000 hover:scale-105 transition-transform cursor-pointer group">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
                             </div>
                             <div>
-                                <p class="text-xs text-gray-500 font-medium">Status</p>
-                                <p class="text-sm font-bold text-gray-800">Available to Hire</p>
+                                <p class="text-xs text-gray-500 font-medium">Resume</p>
+                                <p class="text-sm font-bold text-gray-800">Download CV</p>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
+        </div>
+
+        <!-- Wave Shape -->
+        <div class="absolute bottom-0 left-0 right-0 z-0 pointer-events-none">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full h-auto text-white fill-current">
+                <path fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
         </div>
     </section>
 
@@ -293,33 +306,28 @@
 
                 <!-- Category Filter -->
                 <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
-                    <button 
-                        onclick="filterProjects('all')" 
-                        class="filter-btn active px-6 py-2 rounded-full border-2 border-accent-500 text-accent-500 hover:bg-accent-500 hover:text-white transition-all font-medium data-[active=true]:bg-accent-500 data-[active=true]:text-white"
-                        data-category="all"
-                        data-active="true"
+                    <a 
+                        href="{{ route('landing') }}"
+                        class="filter-btn px-6 py-2 rounded-full border-2 border-accent-500 hover:bg-accent-500 hover:text-white transition-all font-medium {{ !request('category') || request('category') == 'all' ? 'bg-accent-500 text-white' : 'text-accent-500' }}"
                     >
                         All
-                    </button>
+                    </a>
                     @foreach($categories as $category)
-                        <button 
-                            onclick="filterProjects('{{ $category }}')" 
-                            class="filter-btn px-6 py-2 rounded-full border-2 border-accent-500 text-accent-500 hover:bg-accent-500 hover:text-white transition-all font-medium data-[active=true]:bg-accent-500 data-[active=true]:text-white"
-                            data-category="{{ $category }}"
-                            data-active="false"
+                        <a 
+                            href="{{ route('landing', ['category' => $category]) }}"
+                            class="filter-btn px-6 py-2 rounded-full border-2 border-accent-500 hover:bg-accent-500 hover:text-white transition-all font-medium {{ request('category') == $category ? 'bg-accent-500 text-white' : 'text-accent-500' }}"
                         >
                             {{ $category }}
-                        </button>
+                        </a>
                     @endforeach
                 </div>
             </div>
             
             <!-- Project Cards Grid -->
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" id="projects-grid">
                 @forelse($projects as $index => $project)
                     <div 
                         class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover project-item group" 
-                        data-tech="{{ json_encode($project->tech) }}"
                     >
                         <!-- Project Image/Placeholder -->
                         @if($project->image)
@@ -372,9 +380,14 @@
                         <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                         </svg>
-                        <p class="text-gray-500">Belum ada project.</p>
+                        <p class="text-gray-500">Belum ada project{{ request('category') ? ' di kategori ini' : '' }}.</p>
                     </div>
                 @endforelse
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center mt-8">
+                {{ $projects->links() }}
             </div>
         </div>
     </section>
@@ -499,11 +512,35 @@
                     <p class="text-gray-400 mt-2">{{ $about->title ?? 'Fullstack Developer' }}</p>
                 </div>
                 
-                <div class="flex space-x-6">
-                    <a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a>
-                    <a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a>
-                    <a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projects</a>
-                    <a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a>
+                <div class="flex flex-col items-center md:items-end gap-6">
+                    <div class="flex space-x-6">
+                        <a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a>
+                        <a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a>
+                        <a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projects</a>
+                        <a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a>
+                    </div>
+
+                    @if(isset($contact->social_links) && is_array($contact->social_links))
+                        <div class="flex space-x-4">
+                            @foreach($contact->social_links as $platform => $link)
+                                @if($link)
+                                    <a href="{{ $link }}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
+                                        @if($platform === 'instagram')
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                        @elseif($platform === 'github')
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                        @elseif($platform === 'linkedin')
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                                        @elseif($platform === 'facebook')
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385h-3.047v-3.47h3.047v-2.641c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385c5.737-.9 10.125-5.864 10.125-11.854z"/></svg>
+                                        @elseif($platform === 'tiktok')
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                                        @endif
+                                    </a>
+                                @endif
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
             
@@ -728,17 +765,19 @@
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             
-            mobileMenuBtn.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            // Close mobile menu when clicking on a link
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.add('hidden');
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
                 });
-            });
+                
+                // Close mobile menu when clicking on a link
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
             
             // Navbar scroll effect
             const navbar = document.getElementById('navbar');
